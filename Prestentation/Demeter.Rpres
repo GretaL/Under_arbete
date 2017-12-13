@@ -1,0 +1,108 @@
+Demeter R-esultatet
+========================================================
+author: Greta Linder & Camilla Hertil Lindelöw
+date: 2017-12-07
+autosize: true
+
+<style>
+
+.reveal .state-background {
+  background: lightblue;
+}
+
+.reveal .slideContent h1 {
+  font-size: 180px;
+  color: blue;
+}
+
+.reveal h3 {
+  font-size: 80px;
+}
+
+.reveal .slides section .slideContent h2 {
+   font-size: 60px;
+   font-weight: bold;
+}
+
+</style>
+
+Bakgrund
+========================================================
+
+Behov av en mer effektiv och säker arbetsprocess för våra bibliometriska analyser.
+
+Kompetenshöjande då det gäller datahantering. 
+
+Möjligt att koppla ihop flera källor.
+
+Projektets deltagare: Camilla, Greta och Jonas Ö.
+
+Vi jobbar med
+========================================================
+
+## R Studio:
+- Gratis programvara
+- Installerat på en virtuell server hos Sunet, för att vi skall kunna göra uppdateringar själva
+- Programmeringsspråket R
+
+***
+
+## GitHub:
+- Södertörns högskolebibliotek https://github.com/SodertornHB
+- För att kunna dela skript med andra
+
+Vi har lärt oss genom att
+=======================================================
+
+- titta på tutorials på nätet
+
+- läsa en bok och tillsammans göra övningar
+
+- Jonas har hållit lektioner i server-kunskap
+
+Skriptet kan se ut så här
+========================================================
+
+```{r}
+library(tidyverse)
+library(stringr)
+
+diva <- read_csv(file = "/home/shub/assets/diva/diva_researchpubl_latest.csv")
+
+ahead_of_print <- diva %>% 
+  subset(Status == "aheadofprint") %>%
+  select(PID, DOI) %>%
+  transmute(PID, link = str_c("https://doi.org/", DOI))
+
+```
+
+Resultatet 
+========================================================
+Det går att skriva resultatet till en csv-fil.  
+I R Markdown blandas den egna texten med skript och genererar en rapporter som html, pdf eller word.
+
+```{r, echo=FALSE}
+knitr::kable(ahead_of_print)
+```
+
+GitHub
+=======================================================
+Södertörns högskolebibliotek https://github.com/SodertornHB 
+
+Skripten är uppdelade i olika arkiv, som vem som helst kan ladda ner.
+
+Fortsättning
+=======================================================
+
+- Underhålla och förbättra de skript vi avänder
+
+- Se om andra områden inom biblioteket kan använda skript
+
+- Underhålla servern
+
+Slide
+=======================================================
+title: false
+
+
+# Frågor?
